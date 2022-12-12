@@ -88,7 +88,7 @@ trait UssdMenuTrait
 
                 $this->sendNotification($message, $user->phone_number);
 
-                (double)$float = $balance - (int)$balance;
+                (double)$float = $balance - (int)$balance;                
 
                 if($float > 0 && $float < 1){
 
@@ -106,9 +106,12 @@ trait UssdMenuTrait
 
                     $saving_balance = Saving::where('user_id', $user->id)->value('balance');
 
+                    $final_savings  = $float;
+
                     if($saving_balance){
 
                         $savings_total = (double)$saving_balance + (double)$float;
+                        $final_savings = $savings_total;
                         Saving::where('user_id', $user->id)->update(
                                 array(
                                     'balance' => $savings_total
@@ -116,6 +119,7 @@ trait UssdMenuTrait
                             );
 
                     }else{
+
                         $savings = new Saving;
                         $savings->user_id = $user->id;
                         $savings->balance = (double)$float;
@@ -123,7 +127,7 @@ trait UssdMenuTrait
                     }
 
 
-                    $savingsMessage = $payment->trans_id . 'Confirmed. Ksh'. $float . 'paid to PennyWise Savings on '. date('"m.d.y') . ' at '. date("H:i:s"). ' New M-MONEY balance is Ksh'. (double)$final_balance . '. Transaction cost, Ksh0.00. Amount you can transact within the day is Ksh193,700.00.'; 
+                    $savingsMessage = $payment->trans_id . 'Confirmed. Ksh'. $float . 'paid to PennyWise Savings on '. date('"m.d.y') . ' at '. date("H:i:s"). ' New PennyWise Savings balance is Ksh'. (double)$final_savings . '. Amount you can transact within the day is Ksh193,700.00.'; 
 
                     $this->sendNotification($savingsMessage, $user->phone_number);
 
@@ -168,7 +172,7 @@ trait UssdMenuTrait
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
         
-        $curl_response = curl_exec($curl);        
+        curl_exec($curl);        
         
         return 'success';
 
