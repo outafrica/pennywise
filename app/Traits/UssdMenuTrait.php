@@ -84,7 +84,7 @@ trait UssdMenuTrait
                     'balance' => $balance
                 ));
 
-                $message = $payment->trans_id . 'Confirmed. Ksh.70.69 paid to PROVEN SOLUTIONS on '. date('"m.d.y') . ' at '. date("H:i:s"). ' New M-MONEY balance is Ksh'. $balance . '. Transaction cost, Ksh0.00. Amount you can transact within the day is Ksh193,700.00.'; 
+                $message = $payment->trans_id . ' Confirmed. Ksh.70.69 paid to PROVEN SOLUTIONS on '. date('"m.d.y') . ' at '. date("H:i:s"). ' New M-MONEY balance is Ksh'. (double)$balance . '. Transaction cost, Ksh0.00. Amount you can transact within the day is Ksh193,700.00.'; 
 
                 $this->sendNotification($message, $user->phone_number);
 
@@ -127,7 +127,7 @@ trait UssdMenuTrait
                     }
 
 
-                    $savingsMessage = $payment->trans_id . 'Confirmed. Ksh'. $float . 'paid to PennyWise Savings on '. date('"m.d.y') . ' at '. date("H:i:s"). ' New PennyWise Savings balance is Ksh'. (double)$final_savings . '. Amount you can transact within the day is Ksh193,700.00.'; 
+                    $savingsMessage = $saving_transaction->trans_id . ' Confirmed. Ksh'. (double)$float . ' paid to PennyWise Savings on '. date('"m.d.y') . ' at '. date("H:i:s"). ' New PennyWise Savings balance is Ksh'. (double)$final_savings . '. Amount you can transact within the day is Ksh193,700.00.'; 
 
                     $this->sendNotification($savingsMessage, $user->phone_number);
 
