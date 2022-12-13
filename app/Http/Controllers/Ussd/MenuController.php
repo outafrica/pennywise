@@ -64,7 +64,7 @@ class MenuController extends Controller
                     
                     if($this->regPennyWise($input, $phone) == 'success'){
 
-                        $this->ussd_stop('Thank you for using PennyWise Services');
+                        $this->ussd_stop('Thank you for using M-SENTI Services');
     
                     }
     
@@ -100,7 +100,7 @@ class MenuController extends Controller
     
                     if($this->processPayment($input, $phone) == 'success'){
                         
-                        $this->ussd_stop('Thank you for using PennyWise Services');
+                        $this->ussd_stop('Thank you for using M-SENTI Services');
     
                     }
 
@@ -115,7 +115,7 @@ class MenuController extends Controller
 
     public function loadRegistrationMenu() {
         
-        $start = 'Welcome to PennyWise, where you make more with cents.';
+        $start = 'Welcome to M-SENTI, where you make more with cents.';
         $start .= "\n1. Register";
 
         $this->ussd_proceed($start);
@@ -128,7 +128,7 @@ class MenuController extends Controller
 
     public function loadPaymentDemo(){
 
-        $start = 'Do you want to pay Kshs.70 to PROVEN SOLUTIONS?\n Enter your PIN:\n';
+        $start = 'M-PESA\nDo you want to pay Kshs.1000.00 to KPLC PREPAID account 1122345?\nEnter your PIN:\n';
         $this->ussd_proceed($start);
 
     }

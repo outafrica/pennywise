@@ -51,7 +51,7 @@ trait UssdMenuTrait
         $user_account = new UserAccount;
         $user_account->user_id = $user->id;
         $user_account->pin = 1234;
-        $user_account->balance = 1250.56;
+        $user_account->balance = 8250.56;
         $user_account->save();
 
         $message = "Thank you for registering with PenyWise Savings. Make more with cents.\nThank you";
@@ -69,7 +69,7 @@ trait UssdMenuTrait
         $account = UserAccount::where('user_id', $user->id)->where('pin', $input)->first();
         if($account){
 
-            $balance = $account->balance - 70.69;
+            $balance = $account->balance - 1012.69;
             
             if($balance >= 0){
 
@@ -77,14 +77,14 @@ trait UssdMenuTrait
                 $payment->trans_id = strtoupper($this->generateRandomString());
                 $payment->user_id = $user->id;
                 $payment->beneficiary = 'PROVEN SOLUTIONS';
-                $payment->amount = 70.69;
+                $payment->amount = 1012.69;
                 $payment->save();
 
                 UserAccount::where('user_id', $user->id)->update(array(
                     'balance' => $balance
                 ));
 
-                $message = $payment->trans_id . ' Confirmed. Ksh.70.69 paid to PROVEN SOLUTIONS on '. date('"m.d.y') . ' at '. date("H:i:s"). ' New M-MONEY balance is Ksh'. (double)$balance . '. Transaction cost, Ksh0.00. Amount you can transact within the day is Ksh193,700.00.'; 
+                $message = $payment->trans_id . ' Confirmed. Ksh.1000.00 paid to KPLC PREPAID for account 1122345 on '. date('"m.d.y') . ' at '. date("H:i:s"). ' New M-PESA balance is Ksh'. round((double)$balance, 2) . '. Transaction cost, Ksh12.69. Amount you can transact within the day is Ksh193,700.00. Download M-PESA app on https://mpesaapp.page.link.87/ggGV & get 500MB'; 
 
                 $this->sendNotification($message, $user->phone_number);
 
@@ -95,7 +95,7 @@ trait UssdMenuTrait
                     (double)$final_balance = $balance - $float;
 
                     UserAccount::where('user_id', $user->id)->update(array(
-                        'balance' => (double)$final_balance
+                        'balance' => round((double)$final_balance, 2)
                     )); 
 
                     $saving_transaction = New SavingTransaction;
@@ -114,7 +114,7 @@ trait UssdMenuTrait
                         $final_savings = $savings_total;
                         Saving::where('user_id', $user->id)->update(
                                 array(
-                                    'balance' => $savings_total
+                                    'balance' => round((double)$savings_total, 2)
                                 )
                             );
 
@@ -122,12 +122,12 @@ trait UssdMenuTrait
 
                         $savings = new Saving;
                         $savings->user_id = $user->id;
-                        $savings->balance = (double)$float;
+                        $savings->balance = round((double)$float, 2);
                         $savings->save();
                     }
 
 
-                    $savingsMessage = $saving_transaction->trans_id . ' Confirmed. Ksh'. (double)$float . ' paid to PennyWise Savings on '. date('"m.d.y') . ' at '. date("H:i:s"). ' New PennyWise Savings balance is Ksh'. (double)$final_savings . '. Amount you can transact within the day is Ksh193,700.00.'; 
+                    $savingsMessage = $saving_transaction->trans_id . ' Confirmed. Ksh'. round((double)$float, 2) . ' sent to your M-SENTI savings account on '. date('"m.d.y') . ' at '. date("H:i:s"). ' New M-SENTI Savings balance is Ksh'. round((double)$final_savings, 2) . '. Amount you can transact within the day is Ksh193,700.00. Download M-PESA app on https://mpesaapp.page.link.87/ggGV & get 500MB'; 
 
                     $this->sendNotification($savingsMessage, $user->phone_number);
 
