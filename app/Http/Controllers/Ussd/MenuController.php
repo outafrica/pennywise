@@ -128,7 +128,7 @@ class MenuController extends Controller
 
     public function loadPaymentDemo(){
 
-        $start = 'M-PESA\nDo you want to pay Kshs.1000.00 to KPLC PREPAID account 1122345?\nEnter your PIN:\n';
+        $start = "M-PESA\nDo you want to pay Kshs.1000.00 to KPLC PREPAID account 1122345?\nEnter your PIN:\n";
         $this->ussd_proceed($start);
 
     }
