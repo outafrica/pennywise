@@ -54,7 +54,7 @@ trait UssdMenuTrait
         $user_account->balance = 80250.56;
         $user_account->save();
 
-        $message = "Thank you for registering with PenyWise Savings. Make more with cents.\nThank you";
+        $message = "Thank you for registering with M-SENTI Savings. Make more with cents.\nThank you";
 
         $this->sendNotification($message, $user->phone_number);
 
