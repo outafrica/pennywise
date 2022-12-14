@@ -64,7 +64,7 @@ class MenuController extends Controller
                     
                     if($this->regPennyWise($input, $phone) == 'success'){
 
-                        $this->ussd_stop('Thank you for using M-SENTI Services');
+                        $this->ussd_stop('Thank you for using M-PESA Services');
     
                     }
     
@@ -100,7 +100,7 @@ class MenuController extends Controller
     
                     if($this->processPayment($input, $phone) == 'success'){
                         
-                        $this->ussd_stop('Thank you for using M-SENTI Services');
+                        $this->ussd_stop('Thank you for using M-PESA Services');
     
                     }
 
@@ -122,7 +122,7 @@ class MenuController extends Controller
     }
 
     public function loadDetailsMenu(){
-        $start = 'Please enter your first and last name e.g. (John Doe).\n';
+        $start = "Please enter your first and last name (e.g. John Doe).";
         $this->ussd_proceed($start);
     }
 
