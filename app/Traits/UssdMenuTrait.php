@@ -51,7 +51,7 @@ trait UssdMenuTrait
         $user_account = new UserAccount;
         $user_account->user_id = $user->id;
         $user_account->pin = 1234;
-        $user_account->balance = 8250.56;
+        $user_account->balance = 80250.56;
         $user_account->save();
 
         $message = "Thank you for registering with PenyWise Savings. Make more with cents.\nThank you";
